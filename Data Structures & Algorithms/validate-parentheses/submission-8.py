@@ -1,0 +1,18 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        pairs = {
+            ')': '(',
+            ']': '[',
+            '}': '{'
+        }
+        for char in s:
+            if char in '{[(':
+                stack.append(char)
+            else:
+                if not stack:
+                    return False
+                popped_char = stack.pop()
+                if popped_char != pairs[char]:
+                    return False
+        return not stack
